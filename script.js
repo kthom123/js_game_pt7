@@ -46,11 +46,14 @@ window.addEventListener('load', function(){
       context.drawImage(this.image, 5 * this.width, 1 * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     update(input){
+      // horizontal movement
       this.x += this.speed;
       if (input.keys.indexOf('ArrowRight') > -1){
         this.speed = 5;
       } else if (input.keys.indexOf('ArrowLeft') > -1) {
         this.speed = -5;
+      } else if (input.keys.indexOf('ArrowUp') > -1) {
+        this.vy -= 30;
       } else {
         this.speed = 0;
       }
