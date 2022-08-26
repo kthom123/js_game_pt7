@@ -35,10 +35,12 @@ window.addEventListener('load', function(){
       this.height = 200;
       this.x = 0;
       this.y = this.gameHeight - this.height;
+      this.image = document.getElementById('playerImage');
     }
     draw(context){
       context.fillStyle = 'white';
       context.fillRect(this.x, this.y, this.width, this.height);
+      context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     update(){
       this.x++;
