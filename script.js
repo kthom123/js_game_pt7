@@ -44,7 +44,7 @@ window.addEventListener('load', function(){
     draw(context){
       context.fillStyle = 'white';
       context.fillRect(this.x, this.y, this.width, this.height);
-      context.drawImage(this.image, 5 * this.width, 1 * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
+      context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     update(input){
       if (input.keys.indexOf('ArrowRight') > -1){
