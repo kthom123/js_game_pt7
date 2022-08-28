@@ -111,7 +111,7 @@ window.addEventListener('load', function(){
       this.y = 0;
     }
     draw(context){
-      context.drawImage(this.image, 0 * this.width, 0 * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
+      context.drawImage(this.image, this.x, this.y);
     }
   }
 
@@ -131,7 +131,7 @@ window.addEventListener('load', function(){
   function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     background.draw(ctx);
-    background.update();
+    // background.update();
     player.draw(ctx);
     player.update(input);
     enemy1.draw(ctx);
