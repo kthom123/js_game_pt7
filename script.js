@@ -40,7 +40,7 @@ window.addEventListener('load', function(){
       this.frameY = 0;
       this.speed = 0;
       this.vy = 0;
-      this.weight = 0;
+      this.weight = 1;
     }
     draw(context){
       context.fillStyle = 'white';
@@ -68,7 +68,7 @@ window.addEventListener('load', function(){
       } else {
           this.vy = 0;
       }
-      if (this.y > this.gameHeight - this.height) this.y = this.gameHeight - this.height;
+      if (this.y > this.gameHeight - this.height) this.y = this.gameHeight - this.height
     }
     onGround(){
       return this.y >= this.gameHeight - this.height;
