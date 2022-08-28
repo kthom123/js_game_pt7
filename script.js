@@ -86,10 +86,12 @@ window.addEventListener('load', function(){
       this.y = 0;
       this.width = 2400;
       this.height = 720;
-      this.speed = 20;
+      this.speed = 7;
     }
     draw(context){
       context.drawImage(this.image, this.x, this.y, this.width, this.height);
+      context.drawImage(this.image, this.x + this.width - this.speed, this.y, this.width, this.height);
+
     }
     update(){
       this.x -= this.speed;
@@ -99,7 +101,18 @@ window.addEventListener('load', function(){
   }
 
   class Enemy {
-
+    constructor(gameWidth, gameHeight){
+      this.gameWidth = gameWidth;
+      this.gameHeight = gameHeight;
+      this.width = 160;
+      this.height = 119;
+      this.image = docuent.getElementById('enemyImage');
+      this.x = 0;
+      this.y = 0;
+    }
+    draw(context){
+      context.drawImage(this.image, 0 * this.width, 0 * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
+    }
   }
 
   function handleEnemies(){
@@ -113,6 +126,7 @@ window.addEventListener('load', function(){
   const input = new InputHandler();
   const player = new Player(canvas.width, canvas.height);
   const background = new Background(canvas.width, canvas.height);
+  const enemy1 = new Enemy(canvas.width, canvas.height);
 
   function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -120,6 +134,7 @@ window.addEventListener('load', function(){
     background.update();
     player.draw(ctx);
     player.update(input);
+    enemy1.draw(ctx);
     requestAnimationFrame(animate);
   }
   animate();
