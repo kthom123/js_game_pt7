@@ -53,9 +53,17 @@ window.addEventListener('load', function(){
       context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height,
       this.width, this.height, this.x, this.y, this.width, this.height);
     }
-    update(input){
-      if (this.frameX >= this.maxFrame) this.frameX = 0;
-      else this.frameX++;
+    update(input, deltaTime){
+      // sprite animation
+      if (this.frameTimer > this.frameInterval){
+        if (this.frameX >= this.maxFrame) this.frameX = 0;
+        else this.frameX++;
+        this.frameTimer = 0;
+      } else {
+        this.frameTimer += deltaTime;
+      }
+
+      // controls
       if (input.keys.indexOf('ArrowRight') > -1){
           this.speed = 5;
       } else if (input.keys.indexOf('ArrowLeft') > -1) {
@@ -73,9 +81,11 @@ window.addEventListener('load', function(){
       this.y += this.vy;
       if (!this.onGround()){
           this.vy += this.weight;
+          this.maxFrame = 5;
           this.frameY = 1;
       } else {
           this.vy = 0;
+          this.maxFrame = 8;
           this.frameY = 0;
       }
       if (this.y > this.gameHeight - this.height) this.y = this.gameHeight - this.height;
@@ -174,7 +184,7 @@ window.addEventListener('load', function(){
     background.draw(ctx);
     background.update();
     player.draw(ctx);
-    player.update(input);
+    player.update(input, deltaTime);
     handleEnemies(deltaTime);
     requestAnimationFrame(animate);
   }
