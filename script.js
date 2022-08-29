@@ -38,7 +38,11 @@ window.addEventListener('load', function(){
       this.y = this.gameHeight - this.height;
       this.image = document.getElementById('playerImage');
       this.frameX = 0;
+      this.maxFrame = 8;
       this.frameY = 0;
+      this.fps = 20;
+      this.frameTimer = 0;
+      this.frameInterval = 1000/this.fps;
       this.speed = 0;
       this.vy = 0;
       this.weight = 1;
@@ -50,6 +54,8 @@ window.addEventListener('load', function(){
       this.width, this.height, this.x, this.y, this.width, this.height);
     }
     update(input){
+      if (this.frameX >= this.maxFrame) this.frameX = 0;
+      else this.frameX++;
       if (input.keys.indexOf('ArrowRight') > -1){
           this.speed = 5;
       } else if (input.keys.indexOf('ArrowLeft') > -1) {
