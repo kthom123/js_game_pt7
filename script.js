@@ -120,9 +120,9 @@ window.addEventListener('load', function(){
       this.x--;
     }
   }
+  enemies.push(new Enemy(canvas.width, canvas.height));
 
   function handleEnemies(){
-    enemies.push(new Enemy(canvas.width, canvas.height));
     enemies.forEach(enemy => {
       enemy.draw(ctx);
       enemy.update();
@@ -137,12 +137,16 @@ window.addEventListener('load', function(){
   const player = new Player(canvas.width, canvas.height);
   const background = new Background(canvas.width, canvas.height);
 
+  let lastTime = 0;
+
   function animate(){
+    const deltaTime = timeStamp - lastTime;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     background.draw(ctx);
     // background.update();
     player.draw(ctx);
     player.update(input);
+    handleEnemies();
     requestAnimationFrame(animate);
   }
   animate();
