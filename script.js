@@ -123,8 +123,9 @@ window.addEventListener('load', function(){
   }
 
   function handleEnemies(deltaTime){
-    if (enemyTimer > enemyInterval){
+    if (enemyTimer > enemyInterval + randomEnemyInterval){
       enemies.push(new Enemy(canvas.width, canvas.height));
+      randomEnemyInterval = Math.random() * 1000 + 500;
       enemyTimer = 0;
     } else {
       enemyTimer += deltaTime;
