@@ -5,6 +5,7 @@ window.addEventListener('load', function(){
   canvas.height = 720;
   let enemies = [];
   let score = 0;
+  let gameOver = false;
 
   class InputHandler {
     constructor(){
@@ -154,6 +155,10 @@ window.addEventListener('load', function(){
       context.beginPath();
       context.arc(this.x + this.width/2, this.y + this.height/2, this.width/2, 0, Math.PI * 2);
       context.stroke();
+      context.strokeStyle = 'blue';
+      context.beginPath();
+      context.arc(this.x, this.y, this.width/2, 0, Math.PI * 2);
+      context.stroke();
       context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height,
         this.x, this.y, this.width, this.height);
     }
@@ -194,6 +199,13 @@ window.addEventListener('load', function(){
     context.fillText('Score: ' + score, 20, 50);
     context.fillStyle = 'white';
     context.fillText('Score: ' + score, 22, 52);
+    if (gameOver){
+      context.textAlign = 'center';
+      context.fillStyle = 'black';
+      context.fillText('GAME OVER, try again!', canvas.width/2, 200);
+      context.fillStyle = 'white';
+      context.fillText('GAME OVER, try again!', canvas.width/2, + 2, 202);
+    }
 
   }
 
@@ -216,7 +228,7 @@ window.addEventListener('load', function(){
     player.update(input, deltaTime, enemies);
     handleEnemies(deltaTime);
     displayStatusText(ctx);
-    requestAnimationFrame(animate);
+    if (!gameOver) requestAnimationFrame(animate);
   }
   animate(0);
 });
