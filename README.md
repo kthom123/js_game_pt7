@@ -9,4 +9,4 @@ Mini side scroller game. Player can use arrows to move and up button to jump. Do
 
 
 ### Check it out:
-https://kthom123.github.io/js_game_pt6/
+https://kthom123.github.io/js_game_pt7/
